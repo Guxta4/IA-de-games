@@ -156,10 +156,10 @@
         userMessage.innerText = input.value;
         messages.appendChild(userMessage);
 
-        // Add chatbot response
+        // Determine chatbot response
         const botMessage = document.createElement('div');
         botMessage.classList.add('message', 'chatbot-message');
-        botMessage.innerText = `Recomendações para: ${input.value}`;
+        botMessage.innerText = getResponse(input.value.trim().toLowerCase());
         messages.appendChild(botMessage);
 
         // Clear input
@@ -167,6 +167,21 @@
 
         // Scroll to the bottom
         messages.scrollTop = messages.scrollHeight;
+      }
+    }
+
+    function getResponse(question) {
+      switch (true) {
+        case question.includes("ps4"):
+          return "Os melhores jogos de PS4 incluem The Last of Us Part II, God of War, e Red Dead Redemption 2.";
+        case question.includes("rpg") && question.includes("pc"):
+          return "Recomendo The Witcher 3, Divinity: Original Sin 2, ou Skyrim no PC.";
+        case question.includes("corrida") && question.includes("celular"):
+          return "Melhores jogos de corrida para celular: Asphalt 9, Real Racing 3, e CSR Racing 2.";
+        case question.includes("estratégia"):
+          return "Dicas para jogos de estratégia: tente Civilization VI, Age of Empires IV ou XCOM 2.";
+        default:
+          return "Desculpe, não entendi sua pergunta. Poderia reformular?";
       }
     }
   </script>
