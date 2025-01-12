@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chatbot de Recomendações</title>
+  <title>ChatDonety</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -118,17 +118,17 @@
 </head>
 <body>
   <header>
-    <h1>Chatbot de Recomendações de Jogos</h1>
+    <h1>ChatDonety</h1>
   </header>
 
   <div class="chat-container">
     <div class="sidebar">
-      <h3>Perguntas Sugeridas:</h3>
+      <h3>Essas são perguntas que o chat vai responder se vc colocar outra coisa ela vai ficar mudo, então...COPIA ISSO LOGO:</h3>
       <ul>
-        <li>"Quais são os melhores jogos de PS4?"</li>
-        <li>"Que jogo de RPG você recomenda no PC?"</li>
-        <li>"Qual é o melhor jogo de corrida para celular?"</li>
-        <li>"Dicas para jogos de estratégia?"</li>
+        <li>"Quais são os melhores jogos de PS4/PS5?"</li>
+        <li>"Que jogo de você recomenda de PC?"</li>
+        <li>"Qual é o melhor jogo para celular?"</li>
+        <li>"Qual é o melhor jogo para você jogar nesse seu mobilador?"</li>
       </ul>
     </div>
 
@@ -138,8 +138,8 @@
       </div>
 
       <div class="input-area">
-        <input type="text" id="userInput" placeholder="Digite sua pergunta...">
-        <button onclick="sendMessage()">Enviar</button>
+        <input type="text" id="userInput" placeholder="FAÇA SUA PERGUNTA LOGO TO ESPERANDO...">
+        <button onclick="sendMessage()">ENVIA LOGO SUA MENSSAGEM N ADIANTA USAR O ENTER!!</button>
       </div>
     </div>
   </div>
@@ -173,13 +173,13 @@
     function getResponse(question) {
       switch (true) {
         case question.includes("ps4"):
-          return "Os melhores jogos de PS4 incluem The Last of Us Part II, God of War, e Red Dead Redemption 2.";
-        case question.includes("rpg") && question.includes("pc"):
-          return "Recomendo The Witcher 3, Divinity: Original Sin 2, ou Skyrim no PC.";
-        case question.includes("corrida") && question.includes("celular"):
-          return "Melhores jogos de corrida para celular: Asphalt 9, Real Racing 3, e CSR Racing 2.";
-        case question.includes("estratégia"):
-          return "Dicas para jogos de estratégia: tente Civilization VI, Age of Empires IV ou XCOM 2.";
+          return "Os melhores jogos de PS4/PS5:incluem The Last of Us Part II, God of War, e Red Dead Redemption 2.";
+        case question.includes("pc") && question.includes("pc"):
+          return "Recomendo Valorant, Fortnite, Roblox, Minecraft Java Edition, Five Night's at Freddy's.no PC.";
+        case question.includes("celular") && question.includes("celular"):
+          return "Melhores jogos para celular: Asphalt 9, Real Racing 3, e CSR Racing 2.";
+        case question.includes("mobilador"):
+          return "Quais são os melhores jogos para jogar no seu mobilador: tente PUBG Mobile, Free Fire ou Minecraft Bedrock Edition.";
         default:
           return "Desculpe, não entendi sua pergunta. Poderia reformular?";
       }
