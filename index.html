@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot de Recomendações</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .chat-container {
+      display: flex;
+      flex: 1;
+      background-color: #f1f1f1;
+    }
+
+    .sidebar {
+      width: 20%;
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sidebar h3 {
+      margin-bottom: 1rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .chat-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      background-color: white;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .input-area {
+      display: flex;
+      align-items: center;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-right: 0.5rem;
+    }
+
+    .input-area button {
+      padding: 0.5rem 1rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .avatar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .avatar img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+
+    .message {
+      margin-bottom: 1rem;
+    }
+
+    .user-message {
+      text-align: right;
+    }
+
+    .chatbot-message {
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Chatbot de Recomendações de Jogos</h1>
+  </header>
+
+  <div class="chat-container">
+    <div class="sidebar">
+      <h3>Perguntas Sugeridas:</h3>
+      <ul>
+        <li>"Quais são os melhores jogos de PS4?"</li>
+        <li>"Que jogo de RPG você recomenda no PC?"</li>
+        <li>"Qual é o melhor jogo de corrida para celular?"</li>
+        <li>"Dicas para jogos de estratégia?"</li>
+      </ul>
+    </div>
+
+    <div class="chat-area">
+      <div class="messages" id="messages">
+        <!-- Messages will appear here -->
+      </div>
+
+      <div class="input-area">
+        <input type="text" id="userInput" placeholder="Digite sua pergunta...">
+        <button onclick="sendMessage()">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const messages = document.getElementById('messages');
+
+      if (input.value.trim() !== "") {
+        // Add user message
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('message', 'user-message');
+        userMessage.innerText = input.value;
+        messages.appendChild(userMessage);
+
+        // Add chatbot response
+        const botMessage = document.createElement('div');
+        botMessage.classList.add('message', 'chatbot-message');
+        botMessage.innerText = `Recomendações para: ${input.value}`;
+        messages.appendChild(botMessage);
+
+        // Clear input
+        input.value = "";
+
+        // Scroll to the bottom
+        messages.scrollTop = messages.scrollHeight;
+      }
+    }
+  </script>
+</body>
+</html>
