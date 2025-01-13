@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ChatDonety</title>
   <style>
-    /* Adicionando a imagem de fundo */
+    /* Estilos ajustados */
     body {
-      background-image: url('chatdonety.webp'); /* Substitua pelo link da sua imagem */
+      background-image: url('chatdonety.webp');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -26,98 +26,48 @@
       text-align: center;
     }
 
-    .chat-container {
-      display: flex;
-      flex: 1;
-      background-color: #77DD77;
-    }
-
-    .sidebar {
-      width: 20%;
-      background-color: #333;
-      color: white;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .sidebar h3 {
-      margin-bottom: 1rem;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .sidebar ul li {
-      margin-bottom: 0.5rem;
-    }
-
-    .chat-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 1rem;
-    }
-
-    .messages {
+    #chat-container {
       flex: 1;
       overflow-y: auto;
-      background-color: green;
-      padding: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-
-    .input-area {
-      display: flex;
-      align-items: center;
-    }
-
-    .input-area input {
-      flex: 1;
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin-right: 0.5rem;
-    }
-
-    .input-area button {
-      padding: 0.5rem 1rem;
-      background-color: #808000;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .avatar {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .avatar img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      margin-right: 0.5rem;
+      padding: 10px;
     }
 
     .message {
-      margin-bottom: 1rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
     }
 
     .user-message {
       text-align: right;
     }
 
-    .chatbot-message {
-      text-align: left;
+    #input-container {
+      display: flex;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    #input-container input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #input-container button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    #input-container button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
@@ -125,110 +75,45 @@
   <header>
     <h1>ChatDonety</h1>
   </header>
-
-  <div class="chat-container">
-    <div class="sidebar">
-      <h3>Essas são perguntas que o chat vai responder, se você colocar outra coisa ele vai ficar mudo, então... COPIE LOGO:</h3>
-      <ul>
-        <li>"Quais são os melhores jogos de PS4/PS5?"</li>
-        <li>"Que jogo de você recomenda de PC?"</li>
-        <li>"Qual é o melhor jogo para celular?"</li>
-        <li>"Qual é o melhor jogo para você jogar nesse seu mobilador?"</li>
-        <li>"Aonde eu consigo achar o melhor canal de vídeos de jogos em 2025 no YouTube?"</li>
-        <li>"Quem é a melhor mãe de todas?</li>
-        <li>Quem é a melhor mãe de todas?</li>
-        <li>Qual é o melhor game de todos?</li>
-        <li>Qual é o melhor kit de PC móvel?</li>
-        <li>Qual é a melhor receita de panqueca?</li>
-        <li>Qual é o jogo mais popular atualmente?</li>
-        <li>Qual é o melhor periférico para gamers?</li>
-        <li>Qual é o melhor equipamento para criar uma estação móvel de trabalho?</li>
-        <li>Qual é o melhor tipo de sobremesa?</li>
-        <li>Qual é a melhor maneira de começar no Minecraft?</li>
-        <li>Qual é o melhor jogo para celular?</li>
-        <li>Qual é o melhor setup para trabalhar remotamente?</li>
-        <li>Qual é o melhor estilo de jogo para iniciantes?</li>
-      </ul>
-    </div>
-
-    <div class="chat-area">
-      <div class="messages" id="messages">
-        <!-- Messages will appear here -->
-      </div>
-
-      <div class="input-area">
-        <input type="text" id="userInput" placeholder="FAÇA SUA PERGUNTA LOGO TO ESPERANDO...">
-        <button onclick="sendMessage()">ENVIA LOGO SUA MENSAGEM, NÃO ADIANTA USAR O ENTER!!</button>
-      </div>
-    </div>
+  <div id="chat-container"></div>
+  <div id="input-container">
+    <input type="text" id="message-input" placeholder="Digite sua mensagem aqui...">
+    <button id="send-button">Enviar</button>
   </div>
 
   <script>
+    // Função para enviar a mensagem
     function sendMessage() {
-      const input = document.getElementById('userInput');
-      const messages = document.getElementById('messages');
+      const messageInput = document.getElementById('message-input');
+      const chatContainer = document.getElementById('chat-container');
+      const messageText = messageInput.value.trim();
 
-      if (input.value.trim() !== "") {
-        // Add user message
-        const userMessage = document.createElement('div');
-        userMessage.classList.add('message', 'user-message');
-        userMessage.innerText = input.value;
-        messages.appendChild(userMessage);
+      if (messageText) {
+        // Criar elemento da mensagem
+        const messageElement = document.createElement('div');
+        messageElement.className = 'message user-message';
+        messageElement.textContent = messageText;
 
-        // Determine chatbot response
-        const botMessage = document.createElement('div');
-        botMessage.classList.add('message', 'chatbot-message');
-        botMessage.innerText = getResponse(input.value.trim().toLowerCase());
-        messages.appendChild(botMessage);
+        // Adicionar mensagem ao chat
+        chatContainer.appendChild(messageElement);
 
-        // Clear input
-        input.value = "";
+        // Limpar o input
+        messageInput.value = '';
 
-        // Scroll to the bottom
-        messages.scrollTop = messages.scrollHeight;
+        // Rolagem automática para a última mensagem
+        chatContainer.scrollTop = chatContainer.scrollHeight;
       }
     }
 
-    function getResponse(question) {
-      switch (true) {
-        case question.includes("ps4"):
-          return "Os melhores jogos de PS4/PS5: incluem The Last of Us Part II, God of War, e Red Dead Redemption 2.";
-        case question.includes("pc"):
-          return "Recomendo Valorant, Fortnite, Roblox, Minecraft Java Edition, Five Night's at Freddy's no PC.";
-        case question.includes("celular"):
-          return "Melhores jogos para celular: Genshin Impact, Call of Duty Warzone Mobile, EA SPORTS FC: UEFA EURO 2024.";
-        case question.includes("mobilador"):
-          return "Quais são os melhores jogos para jogar no seu mobilador: tente PUBG Mobile, Free Fire ou Minecraft Bedrock Edition.";
-        case question.includes("canal"):
-          return "O melhor canal é o GuxtaZone, é um canal de jogos no YouTube que tem no TikTok.";
-        case question.includes("mãe"):
-          return "A melhor mãe de todas é a sua, ela é muito bonita.";
-        case question.includes("jogador"):
-          return "Jogador 456, conheço como Ji Hun-son.";
-        case question.includes("game"):
-          return "O melhor game de todos é... ASTROBOT... éééééé, O Roblox e Minecraft.";
-        case question.includes("kit de pc movel"):
-          return "O melhor kit de pc móvel é hub usb 3.0 para poder conectar seus periféricos, teclado 75% para jogar e outras coisas, mouse Attack Shark X6 que é muito bom para jogos, trabalho e tem uma resposta muito rápida, qualquer tripé que você tiver na sua casa serve, um cabo para conectar seu celular tablet no hub usb.";
-        case question.includes("receita"):
-          return "A melhor receita é a panqueca de chocolate. Para fazer esta deliciosa receita, você vai precisar de: 1 ou + ovo, 2 colheres de sopa de Nescau ou Toddy, 2 colheres de farinha, 1 colher de açúcar. Depois, é só mexer tudo e colocar na frigideira por 2 minutos de cada lado, e pronto, você pode confeitar sua panqueca.";
-        case question.includes("popular"):
-          return "Atualmente, Roblox e Minecraft continuam sendo os mais jogados!.";
-        case question.includes("periférico"):
-          return "O mouse Attack Shark X6 é excelente para jogos e trabalho, com uma resposta super rápida.";
-        case question.includes("Sobremesa"):
-          return "A melhor Sobremesa é  Sorvete de balnelhia no calor ele fica muito top, tbm varias pessoas concordam 75% da população inteira da Terra concordam que o Sorvete de Balnilhia.";
-        case question.include("Minecraft")
-          return "Comece com o modo sobrevivência, construa uma base segura e explore aos poucos.";
-        case question.includes("Celular")
-          return "Depende do estilo, mas Roblox e Brawl Stars são ótimas opções.";
-        case question.includes("trabalhar")
-          return " Invista em um hub USB, mouse responsivo e teclado compacto.";
-        case question.includes("iniciante")
-          return " "Jogos de aventura e sobrevivência, como Minecraft, são ideais.";
-        default:
-          return "MDSSSSSSSSSS NÃO DEU PRA ENTENDER NADA QUE VC FALOU, AGR SE VC QUER QUE EU FALE RESPOSTA COPIE QUE ESTÃO NO LADO";
+    // Adicionar evento ao botão "Enviar"
+    document.getElementById('send-button').addEventListener('click', sendMessage);
+
+    // Permitir envio com tecla "Enter"
+    document.getElementById('message-input').addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        sendMessage();
       }
-    }
+    });
   </script>
 </body>
 </html>
