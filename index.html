@@ -1,202 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ChatDonety</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
+<script>
+  function sendMessage() {
+    const input = document.getElementById('userInput');
+    const messages = document.getElementById('messages');
+
+    if (input.value.trim() !== "") {
+      // Add user message
+      const userMessage = document.createElement('div');
+      userMessage.classList.add('message', 'user-message');
+      userMessage.innerText = input.value;
+      messages.appendChild(userMessage);
+
+      // Determine chatbot response
+      const botMessage = document.createElement('div');
+      botMessage.classList.add('message', 'chatbot-message');
+      botMessage.innerText = getResponse(input.value.trim().toLowerCase());
+      messages.appendChild(botMessage);
+
+      // Clear input
+      input.value = "";
+
+      // Scroll to the bottom
+      messages.scrollTop = messages.scrollHeight;
     }
+  }
 
-    header {
-      background-color: #4CAF50;
-      color: white;
-      padding: 1rem;
-      text-align: center;
+  function getResponse(question) {
+    switch (true) {
+      case question.includes("ps4"):
+        return "Os melhores jogos de PS4/PS5: incluem The Last of Us Part II, God of War, e Red Dead Redemption 2.";
+      case question.includes("pc"):
+        return "Recomendo Valorant, Fortnite, Roblox, Minecraft Java Edition, Five Night's at Freddy's no PC.";
+      case question.includes("celular"):
+        return "Melhores jogos para celular: Genshin Impact, Call of Duty Warzone Mobile, EA SPORTS FC: UEFA EURO 2024.";
+      case question.includes("mobilador"):
+        return "Quais são os melhores jogos para jogar no seu mobilador: tente PUBG Mobile, Free Fire ou Minecraft Bedrock Edition.";
+      case question.includes("canal"):
+        return "O melhor canal é o GuxtaZone, é um canal de jogos no YouTube que tem no TikTok.";
+      case question.includes("mãe"):
+        return "A melhor mãe de todas é a sua, ela é muito bonita.";
+      case question.includes("jogador"):
+        return "Jogador 456, conheço como Ji Hun-son.";
+      case question.includes("game"):
+        return "O melhor game de todos é... ASTROBOT... éééééé, O Roblox e Minecraft.";
+      case question.includes("kit de pc movel"):
+        return "O melhor kit de pc móvel é hub usb 3.0 para poder conectar seus periféricos, teclado 75% para jogar e outras coisas, mouse Attack Shark X6 que é muito bom para jogos, trabalho e tem uma resposta muito rápida, qualquer tripé que você tiver na sua casa serve, um cabo para conectar seu celular tablet no hub usb.";
+      case question.includes("receita"):
+        return "A melhor receita é a panqueca de chocolate. Para fazer esta deliciosa receita, você vai precisar de: 1 ou + ovo, 2 colheres de sopa de Nescau ou Toddy, 2 colheres de farinha, 1 colher de açúcar. Depois, é só mexer tudo e colocar na frigideira por 2 minutos de cada lado, e pronto, você pode confeitar sua panqueca.";
+      default:
+        return "Desculpe, não entendi sua pergunta. Poderia reformular?";
     }
-
-    .chat-container {
-      display: flex;
-      flex: 1;
-      background-color: #77DD77;
-    }
-
-    .sidebar {
-      width: 20%;
-      background-color: #333;
-      color: white;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .sidebar h3 {
-      margin-bottom: 1rem;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .sidebar ul li {
-      margin-bottom: 0.5rem;
-    }
-
-    .chat-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 1rem;
-    }
-
-    .messages {
-      flex: 1;
-      overflow-y: auto;
-      background-color: green;
-      padding: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-
-    .input-area {
-      display: flex;
-      align-items: center;
-    }
-
-    .input-area input {
-      flex: 1;
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin-right: 0.5rem;
-    }
-
-    .input-area button {
-      padding: 0.5rem 1rem;
-      background-color: #808000;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .avatar {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .avatar img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      margin-right: 0.5rem;
-    }
-
-    .message {
-      margin-bottom: 1rem;
-    }
-
-    .user-message {
-      text-align: right;
-    }
-
-    .chatbot-message {
-      text-align: left;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>ChatDonety</h1>
-  </header>
-
-  <div class="chat-container">
-    <div class="sidebar">
-      <h3>Essas são perguntas que o chat vai responder se vc colocar outra coisa ela vai ficar mudo, então...COPIA ISSO LOGO:</h3>
-      <ul>
-        <li>"Quais são os melhores jogos de PS4/PS5?"</li>
-        <li>"Que jogo de você recomenda de PC?"</li>
-        <li>"Qual é o melhor jogo para celular?"</li>
-        <li>"Qual é o melhor jogo para você jogar nesse seu mobilador?"</li>
-        <li>"Aonde eu consigo char o melhor canal de videos de jogos em 2025 no yt</li>
-      </ul>
-    </div>
-
-    <div class="chat-area">
-      <div class="messages" id="messages">
-        <!-- Messages will appear here -->
-      </div>
-
-      <div class="input-area">
-        <input type="text" id="userInput" placeholder="FAÇA SUA PERGUNTA LOGO TO ESPERANDO...">
-        <button onclick="sendMessage()">ENVIA LOGO SUA MENSSAGEM N ADIANTA USAR O ENTER!!</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function sendMessage() {
-      const input = document.getElementById('userInput');
-      const messages = document.getElementById('messages');
-
-      if (input.value.trim() !== "") {
-        // Add user message
-        const userMessage = document.createElement('div');
-        userMessage.classList.add('message', 'user-message');
-        userMessage.innerText = input.value;
-        messages.appendChild(userMessage);
-
-        // Determine chatbot response
-        const botMessage = document.createElement('div');
-        botMessage.classList.add('message', 'chatbot-message');
-        botMessage.innerText = getResponse(input.value.trim().toLowerCase());
-        messages.appendChild(botMessage);
-
-        // Clear input
-        input.value = "";
-
-        // Scroll to the bottom
-        messages.scrollTop = messages.scrollHeight;
-      }
-    }
-
-    function getResponse(question) {
-      switch (true) {
-        case question.includes("ps4"):
-          return "Os melhores jogos de PS4/PS5:incluem The Last of Us Part II, God of War, e Red Dead Redemption 2.";
-        case question.includes("pc") && question.includes("pc"):
-          return "Recomendo Valorant, Fortnite, Roblox, Minecraft Java Edition, Five Night's at Freddy's.no PC.";
-        case question.includes("celular") && question.includes("celular"):
-          return "Melhores jogos para celular: Genshin Impact, Call of Duty Warzone Mobile, EA SPORTS FC: UEFA EURO 2024.";
-        case question.includes("mobilador"):
-          return "Quais são os melhores jogos para jogar no seu mobilador: tente PUBG Mobile, Free Fire ou Minecraft Bedrock Edition.";
-        default:
-          return "Desculpe, não entendi sua pergunta. Poderia reformular?";
-        case question.includes("canal"):
-          return "O melhor canal é o GuxtaZone, é um canal de jogos no yotube que tem no tiktok.";
-          case question.includes("mãe"):
-          return "A melhor mãe de todas é a sua ela é muito bonita.";
-          case question.includes("jogador"):
-          return "Jogador 456 conheço como Ji hun-son.";
-          case question.includes("game"):
-          return "O melhor game de todos é...ASTROBOT...éééééé O Roblox e Minecraft.";
-          case question.includes("kit de pc movel")
-          return " o melhor kit de pc movel é hub usb 3.0 para poder conectar seus perifericos, teclado 75% para jogar e outras coisas, mouse atack shark x6 que é muito bom para jogos,trabalho e tem uma resposta muito rapida, qualquer tripé que você tiver na sua casa serve, um cabo para conectar seu celular tablet no hub usb.";
-          case question.includes("receita")
-          return "a melhor receita é a panqueca de chocolate, para fazer esta deliosa receita você vai precisar de:1 ou + ovo, 2 colher de sopa de nescau ou toddy, 2colher de farinha, 1colher de açucar, depois só mecher tudo e depois coloca na frigideira por 2 minutos cada lado, e pronto você pode confeitar sua panqueca.";         
-      }
-    }
-  </script>
-</body>
-</html>
+  }
+</script>
