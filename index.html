@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ChatDonety</title>
   <style>
-    /* Estilos básicos */
     body {
       background-image: url('chatdonety.webp');
       background-size: cover;
@@ -109,8 +108,8 @@
     <div id="question-container"></div>
   </div>
   <div id="input-container">
-    <input type="text" id="message-input" placeholder="Digite sua mensagem aqui...">
-    <button id="send-button">Enviar</button>
+    <input type="text" id="message-input" placeholder="MANDE SUA MENSAGEM AGORA...">
+    <button id="send-button">MANDA LOGOOOO!</button>
   </div>
 
   <script>
@@ -132,29 +131,60 @@
       "Posso personalizar o design do ChatDonety?"
     ];
 
-    // Respostas baseadas nas perguntas
     function getAnswer(question) {
       switch (question) {
-        case "O que é ChatDonety?":
-          return "ChatDonety é um chat simples e funcional para comunicação.";
-        case "Como usar o ChatDonety?":
-          return "Digite sua mensagem na caixa de entrada e pressione Enviar.";
-        case "Quais funcionalidades o ChatDonety possui?":
-          return "Atualmente, ele suporta envio de mensagens e perguntas predefinidas.";
-        case "Quem criou o ChatDonety?":
-          return "ChatDonety foi criado por desenvolvedores entusiastas para aprendizado.";
-        case "Quais tecnologias são usadas no ChatDonety?":
-          return "HTML, CSS e JavaScript foram usados para construir o ChatDonety.";
-        case "O ChatDonety é gratuito?":
-          return "Sim, o ChatDonety é totalmente gratuito.";
-        case "O ChatDonety funciona em dispositivos móveis?":
-          return "Sim, o design é responsivo e funciona em dispositivos móveis.";
-        case "Como adicionar mais perguntas ao ChatDonety?":
-          return "Basta editar o código e adicionar mais entradas na função 'getAnswer'.";
-        case "O ChatDonety suporta outras línguas?":
-          return "Atualmente, o ChatDonety está configurado apenas para o idioma português.";
-        case "Posso personalizar o design do ChatDonety?":
-          return "Sim, você pode alterar os estilos CSS para personalizar o design.";
+    case "O que é ChatDonety?":
+      return "ChatDonety é um chat simples e funcional para comunicação.";
+    case "Como usar o ChatDonety?":
+      return "Digite sua mensagem na caixa de entrada e pressione Enviar.";
+    case "Quais funcionalidades o ChatDonety possui?":
+      return "Atualmente, ele suporta envio de mensagens e perguntas predefinidas.";
+    case "Quem criou o ChatDonety?":
+      return "ChatDonety foi criado por desenvolvedores entusiastas para aprendizado.";
+    case "Quais tecnologias são usadas no ChatDonety?":
+      return "HTML, CSS e JavaScript foram usados para construir o ChatDonety.";
+    case "O ChatDonety é gratuito?":
+      return "Sim, o ChatDonety é totalmente gratuito.";
+    case "O ChatDonety funciona em dispositivos móveis?":
+      return "Sim, o design é responsivo e funciona em dispositivos móveis.";
+    case "Como adicionar mais perguntas ao ChatDonety?":
+      return "Basta editar o código e adicionar mais entradas na função 'getAnswer'.";
+    case "O ChatDonety suporta outras línguas?":
+      return "Atualmente, o ChatDonety está configurado apenas para o idioma português.";
+    case "Posso personalizar o design do ChatDonety?":
+      return "Sim, você pode alterar os estilos CSS para personalizar o design.";
+    case question.includes("ps4"):
+      return "Os melhores jogos de PS4/PS5 incluem The Last of Us Part II, God of War, e Red Dead Redemption 2.";
+    case question.includes("pc"):
+      return "Recomendo Valorant, Fortnite, Roblox, Minecraft Java Edition, Five Night's at Freddy's no PC.";
+    case question.includes("celular"):
+      return "Melhores jogos para celular: Genshin Impact, Call of Duty Warzone Mobile, EA SPORTS FC: UEFA EURO 2024.";
+    case question.includes("mobilador"):
+      return "Quais são os melhores jogos para jogar no seu mobilador: tente PUBG Mobile, Free Fire ou Minecraft Bedrock Edition.";
+    case question.includes("canal"):
+      return "O melhor canal é o GuxtaZone, é um canal de jogos no YouTube que tem no TikTok.";
+    case question.includes("mãe"):
+      return "A melhor mãe de todas é a sua, ela é muito bonita.";
+    case question.includes("jogador"):
+      return "Jogador 456, conheço como Ji Hun-son.";
+    case question.includes("game"):
+      return "O melhor game de todos é... ASTROBOT... éééééé, O Roblox e Minecraft.";
+    case question.includes("kit de pc movel"):
+      return "O melhor kit de pc móvel é hub usb 3.0 para poder conectar seus periféricos, teclado 75% para jogar e outras coisas, mouse Attack Shark X6 que é muito bom para jogos, trabalho e tem uma resposta muito rápida, qualquer tripé que você tiver na sua casa serve, um cabo para conectar seu celular tablet no hub usb.";
+    case question.includes("receita"):
+      return "A melhor receita é a panqueca de chocolate. Para fazer esta deliciosa receita, você vai precisar de: 1 ou + ovo, 2 colheres de sopa de Nescau ou Toddy, 2 colheres de farinha, 1 colher de açúcar. Depois, é só mexer tudo e colocar na frigideira por 2 minutos de cada lado, e pronto, você pode confeitar sua panqueca.";
+    case question.includes("popular"):
+      return "Atualmente, Roblox e Minecraft continuam sendo os mais jogados!.";
+    case question.includes("periférico"):
+      return "O mouse Attack Shark X6 é excelente para jogos e trabalho, com uma resposta super rápida.";
+    case question.includes("sobremesa"):
+      return "A melhor sobremesa é sorvete de baunilha. No calor, ele é incrível, e muitas pessoas concordam!";
+    case question.includes("minecraft"):
+      return "Comece com o modo sobrevivência, construa uma base segura e explore aos poucos.";
+    case question.includes("trabalhar"):
+      return "Invista em um hub USB, mouse responsivo e teclado compacto.";
+    case question.includes("iniciante"):
+      return "Jogos de aventura e sobrevivência, como Minecraft, são ideais.";
         default:
           return "Desculpe, não tenho uma resposta para essa pergunta.";
       }
